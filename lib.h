@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-int main(void);
+int main(int argc, char **argv);
 
 FILE *open_log_file(void);
 int close_log_file(void);

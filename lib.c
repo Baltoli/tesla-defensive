@@ -1,9 +1,9 @@
 #include "lib.h"
 
 static FILE *log_file = NULL;
-static struct stats stats = {
+/*static struct stats stats = {
   .hits = 0
-};
+};*/
 
 FILE *open_log_file(void)
 {

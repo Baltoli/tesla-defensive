@@ -6,9 +6,11 @@ LLVM_LINK = llvm-link34
 
 APP_NAME = app
 SRCS = main.c \
-       lib.c
+       lib.c \
+       server.c
 
-CFLAGS += -std=c11
+CFLAGS += -std=c11 -Wall -pedantic -Wno-gnu-empty-struct
+CFLAGS += -pthread
 
 all: $(APP_NAME) $(APP_NAME)_tesla $(APP_NAME)_static
 
