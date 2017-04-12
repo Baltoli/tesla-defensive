@@ -10,6 +10,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
+#include "plugin.h"
 #include "server.h"
 
 int server_socket(int port)

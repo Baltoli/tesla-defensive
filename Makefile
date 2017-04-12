@@ -7,7 +7,8 @@ LLVM_LINK = llvm-link34
 APP_NAME = app
 SRCS = main.c \
        lib.c \
-       server.c
+       server.c \
+       plugin.c
 
 CFLAGS += -std=c11 -Wall -pedantic -Wno-gnu-empty-struct
 CFLAGS += -pthread
