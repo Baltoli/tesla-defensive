@@ -49,4 +49,4 @@ $(APP_NAME) : $(SRCS:.c=.o)
 
 clean:
 	rm -rf $(APP_NAME) $(APP_NAME)_tesla $(APP_NAME)_static 
-	rm -rf *.tesla *.manifest *.bc
+	rm -rf *.tesla *.manifest *.bc *.o
