@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <strings.h>
 #include <unistd.h>
 
@@ -72,10 +73,19 @@ void *server_thread(void *a)
 
   char buffer[1024] = { 0 };
   while(true) {
-    int n = read(args->fd, buffer, 1023);
-    if(n <= 0) { pthread_exit(0); }
+    int n = read(args->fd, buffer, 1024);
+    char msg[1024] = { 0 };
+    int off = 0;
 
-    buffer[n] = '\0';
-    handle_message(args->fd, buffer);
+    for(int i = 0; i < n; i++) {
+      if(buffer[i] == '\n') {
+        msg[i+1-off] = '\0';
+        handle_message(args->fd, msg);
+        memset(msg, 0, 1024);
+        off = i+1;
+      } else {
+        msg[i-off] = buffer[i];
+      }
+    }
   }
 }

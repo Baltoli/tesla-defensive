@@ -34,7 +34,7 @@ struct put_args parse_put(char *buf)
   }
 
   ret.val_begin++; p++;
-  while(*++p != '\0') {
+  while(*p++ != '\0') {
     ret.val_len++;
   }
 
@@ -61,7 +61,7 @@ void handle_put(char *message, struct put_args args)
   strncpy(val, message+args.val_begin, args.val_len);
   val[args.val_len] = '\0';
 
-  printf("Setting %s to %s\n", key, val);
+  //printf("Setting %s to %s\n", key, val);
 
   lock_stats();
   record_req();
@@ -82,7 +82,7 @@ void handle_get(char *message, struct get_args args)
   strncpy(key, message+args.key_begin, args.key_len);
   key[args.key_len] = '\0';
 
-  printf("Getting value of %s\n", key);
+  //printf("Getting value of %s\n", key);
 
   lock_stats();
   record_req();
@@ -119,5 +119,5 @@ void handle_message(int fd, char *message)
 
   if(c == put) handle_put(message, parse_put(message));
   else if(c == get) handle_get(message, parse_get(fd, message));
-  else printf("Error!\n");
+  //else printf("Error! %s\n", message);
 }
