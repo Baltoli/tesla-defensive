@@ -40,10 +40,10 @@ app_static.instr.bc : tesla_static.manifest app.bc
 	$(TESLA) instrument -tesla-manifest $^ -o $@
 
 $(APP_NAME)_tesla : app.instr.bc
-	$(CC) $(APP_CFLAGS) $(CFLAGS) -L$(TESLA_LINK) -ltesla $(abspath $<) -o $@
+	$(CC) $(APP_CFLAGS) $(CFLAGS) -L$(TESLA_LINK) -Wl,-rpath,$(TESLA_LINK) -ltesla $(abspath $<) -o $@
 
 $(APP_NAME)_static : app_static.instr.bc
-	$(CC) $(APP_CFLAGS) $(CFLAGS) -L$(TESLA_LINK) -ltesla $(abspath $<) -o $@
+	$(CC) $(APP_CFLAGS) $(CFLAGS) -L$(TESLA_LINK) -Wl,-rpath,$(TESLA_LINK) -ltesla $(abspath $<) -o $@
 
 $(APP_NAME) : $(SRCS:.c=.o)
 	$(CC) $(APP_CFLAGS) $(CFLAGS) $(abspath $^) -o $@

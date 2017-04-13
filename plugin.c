@@ -60,6 +60,10 @@ void handle_put(char *message, struct put_args args)
   val[args.val_len] = '\0';
 
   printf("Setting %s to %s\n", key, val);
+
+  lock_stats();
+  record_req();
+  unlock_stats();
 }
 
 void handle_get(char *message, struct get_args args)
@@ -69,20 +73,17 @@ void handle_get(char *message, struct get_args args)
   key[args.key_len] = '\0';
 
   printf("Getting value of %s\n", key);
+
+  lock_stats();
+  record_req();
+  unlock_stats();
 }
 
 void handle_message(char *message)
 {
   enum command c = parse_command(message);
-  switch(c) {
-    case put:
-      handle_put(message, parse_put(message));
-      break;
-    case get:
-      handle_get(message, parse_get(message));
-      break;
-    default:
-      printf("Error\n");
-      break;
-  }
+
+  if(c == put) handle_put(message, parse_put(message));
+  else if(c == get) handle_get(message, parse_get(message));
+  else printf("Error!\n");
 }
