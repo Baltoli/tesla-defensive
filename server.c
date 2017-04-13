@@ -76,6 +76,6 @@ void *server_thread(void *a)
     if(n <= 0) { pthread_exit(0); }
 
     buffer[n] = '\0';
-    handle_message(buffer);
+    handle_message(args->fd, buffer);
   }
 }

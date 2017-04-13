@@ -16,11 +16,12 @@ struct put_args {
 struct get_args {
   size_t key_begin;
   size_t key_len;
+  int reply_fd;
 };
 
 enum command parse_command(char *buf);
 struct put_args parse_put(char *buf);
-struct get_args parse_get(char *buf);
+struct get_args parse_get(int fd, char *buf);
 
 void handle_put(char *message, struct put_args args);
 void handle_get(char *message, struct get_args args);

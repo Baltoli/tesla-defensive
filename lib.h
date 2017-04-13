@@ -19,6 +19,11 @@ void record_req();
 void record_err();
 void dump_stats();
 
+void lock_data_file();
+void unlock_data_file();
+FILE *open_data_file();
+void close_data_file();
+
 void terminate_connection();
 
 #endif

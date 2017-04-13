@@ -7,6 +7,6 @@
  * This is the plugin's only interface to the server - from here it can call any
  * methods exposed by the server's API.
  */
-void handle_message(char *message);
+void handle_message(int fd, char *message);
 
 #endif
