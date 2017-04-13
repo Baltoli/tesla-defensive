@@ -10,7 +10,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 
-#include "plugin.h"
+#include "plugin-interface.h"
 #include "server.h"
 
 int server_socket(int port)
@@ -69,5 +69,13 @@ void *server_thread(void *a)
 {
   struct server_thread_args *args = (struct server_thread_args *)a;
   (void)args;
-  pthread_exit(0);
+
+  char buffer[1024] = { 0 };
+  while(true) {
+    int n = read(args->fd, buffer, 1023);
+    if(n <= 0) { pthread_exit(0); }
+
+    buffer[n] = '\0';
+    handle_message(buffer);
+  }
 }

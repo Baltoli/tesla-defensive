@@ -10,7 +10,7 @@ SRCS = main.c \
        server.c \
        plugin.c
 
-CFLAGS += -std=c11 -Wall -pedantic -Wno-gnu-empty-struct
+CFLAGS += -g -std=c11 -Wall -pedantic -Wno-gnu-empty-struct
 CFLAGS += -pthread
 
 all: $(APP_NAME) $(APP_NAME)_tesla $(APP_NAME)_static
