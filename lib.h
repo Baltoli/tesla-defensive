@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#include <tesla-macros.h>
-
 #include "plugin-interface.h"
 
 struct stats {

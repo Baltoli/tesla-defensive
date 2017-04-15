@@ -1,6 +1,8 @@
 #include "lib.h"
 #include "server.h"
 
+#include <tesla-macros.h>
+
 static struct stats stats = {
   .n_reqs = 0,
   .n_errs = 0
