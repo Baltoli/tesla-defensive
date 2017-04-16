@@ -2,7 +2,7 @@ TESLA = $(abspath $(TESLA_ROOT)/bin/tesla)
 TESLA_INCLUDE = $(TESLA_ROOT)/include
 TESLA_LINK = $(TESLA_ROOT)/lib
 
-INSTALL_PREFIX = $(HOME)/libserver_install/
+INSTALL_PREFIX = $(HOME)/libserver_install
 
 CC = clang34
 LLVM_LINK = llvm-link34
@@ -44,8 +44,8 @@ lib$(LIB_NAME).m.bc : lib$(LIB_NAME).bc tesla.manifest
 
 install : lib$(LIB_NAME).m.bc $(INCLUDES)
 	mkdir -p $(INSTALL_PREFIX)/tlib
-	mkdir -p $(INSTALL_PREFIX)/include
-	cp $(INCLUDES) $(INSTALL_PREFIX)/include
+	mkdir -p $(INSTALL_PREFIX)/include/server
+	cp $(INCLUDES) $(INSTALL_PREFIX)/include/server
 	cp $< $(INSTALL_PREFIX)/tlib
 
 clean:

@@ -13,7 +13,7 @@
 
 #include <tesla-macros.h>
 
-#include "server.h"
+#include "server_p.h"
 
 int main(int argc, char **argv);
 
@@ -77,6 +77,38 @@ void *server_thread(void *a)
 {
   struct server_thread_args *args = (struct server_thread_args *)a;
   (void)args;
+
+  const size_t read_size = 10;
+
+  uint8_t in_buf[read_size];
+  bzero(in_buf, read_size);
+
+  uint8_t *msg_buf = NULL;
+  size_t msg_len = 0;
+
+  int n_read;
+  while(true) {
+    n_read = read(args->fd, in_buf, read_size);
+    if(n_read <= 0) { break; }
+
+    msg_buf = realloc(msg_buf, msg_len + read_size);
+    memcpy(msg_buf + msg_len, in_buf, read_size);
+
+    if(n_read == read_size) {
+      msg_len += read_size;
+    } else {
+      msg_len += (size_t)n_read;
+
+      if(handle_data) {
+        handle_data(msg_len, msg_buf);
+      }
+      
+      free(msg_buf);
+
+      msg_buf = NULL;
+      msg_len = 0;
+    }
+  }
 
   pthread_exit(0);
 }
