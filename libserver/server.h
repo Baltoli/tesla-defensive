@@ -4,6 +4,6 @@
 int server_socket(int port);
 void server_loop(int sockfd);
 
-void handle_data(size_t len, uint8_t *data) __attribute__((weak));
+void receive_data(size_t len, uint8_t *data) __attribute__((weak));
 
 #endif

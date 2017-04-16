@@ -99,8 +99,8 @@ void *server_thread(void *a)
     } else {
       msg_len += (size_t)n_read;
 
-      if(handle_data) {
-        handle_data(msg_len, msg_buf);
+      if(receive_data) {
+        receive_data(msg_len, msg_buf);
       }
       
       free(msg_buf);
