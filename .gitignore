@@ -79,3 +79,5 @@ tags
 *.manifest
 data.txt
 *.core
+server
+server.static
