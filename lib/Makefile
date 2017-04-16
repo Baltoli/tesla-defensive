@@ -27,5 +27,5 @@ lib$(LIB_NAME).bc : $(SRCS:.c=.bc)
 lib$(LIB_NAME).m.bc : lib$(LIB_NAME).bc tesla.manifest
 	tesla archive $^ -o $@
 
-install: lib$(LIB_NAME).m.bc
+install : lib$(LIB_NAME).m.bc
 	cp lib$(LIB_NAME).m.bc ../app
